@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Little Vault 💖</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Playfair+Display:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#ffe4ec,#ffd6e8,#fbcfe8);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* Floating Hearts */
+    .heart{
+      position:absolute;
+      color:#ff7aa2;
+      font-size:20px;
+      animation: floatUp 6s linear infinite;
+      opacity:0.4;
+    }
+
+    @keyframes floatUp{
+      0%{
+        transform: translateY(100vh) scale(0.5);
+        opacity:0;
+      }
+      30%{opacity:0.5;}
+      100%{
+        transform: translateY(-10vh) scale(1);
+        opacity:0;
+      }
+    }
+
+    .container{
+      width:90%;
+      max-width:950px;
+      display:flex;
+      background:white;
+      border-radius:35px;
+      box-shadow:0 30px 60px rgba(255,105,180,0.25);
+      overflow:hidden;
+    }
+
+    .left{
+      flex:1;
+      padding:70px 50px;
+      background:linear-gradient(135deg,#ffb6c1,#ff7aa2);
+      color:white;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .left h1{
+      font-family:'Playfair Display',serif;
+      font-size:42px;
+      margin-bottom:20px;
+    }
+
+    .left p{
+      font-size:16px;
+      line-height:1.7;
+      opacity:0.95;
+    }
+
+    .right{
+      flex:1;
+      padding:70px 50px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      background:#fff5f9;
+    }
+
+    .right h2{
+      color:#ff4f81;
+      margin-bottom:25px;
+      text-align:center;
+      font-weight:600;
+    }
+
+    input{
+      width:100%;
+      padding:14px;
+      margin-bottom:18px;
+      border-radius:30px;
+      border:none;
+      background:white;
+      box-shadow:0 5px 15px rgba(255,105,180,0.15);
+      font-size:14px;
+      transition:0.3s;
+    }
+
+    input:focus{
+      outline:none;
+      transform:scale(1.02);
+      box-shadow:0 5px 20px rgba(255,105,180,0.35);
+    }
+
+    button{
+      width:100%;
+      padding:14px;
+      border:none;
+      border-radius:30px;
+      background:linear-gradient(135deg,#ff9bb3,#ff4f81);
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      margin-bottom:10px;
+      transition:0.3s;
+    }
+
+    button:hover{
+      transform:scale(1.05);
+      box-shadow:0 8px 25px rgba(255,105,180,0.35);
+    }
+
+    .footer-text{
+      text-align:center;
+      font-size:12px;
+      color:#888;
+      margin-top:15px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating hearts -->
+  <div class="heart" style="left:10%; animation-delay:0s;">💖</div>
+  <div class="heart" style="left:30%; animation-delay:2s;">💗</div>
+  <div class="heart" style="left:50%; animation-delay:4s;">💞</div>
+  <div class="heart" style="left:70%; animation-delay:1s;">💓</div>
+  <div class="heart" style="left:85%; animation-delay:3s;">💘</div>
+
+  <div class="container">
+
+    <div class="left">
+      <h1>🔐 Little Vault</h1>
+      <p>
+        A gentle place where memories bloom quietly,
+        protected by love and revealed at the perfect moment.
+        <br><br>
+        Store your smiles, your secrets, your stories —
+        and open them when your heart is ready.
+      </p>
+    </div>
+
+    <div class="right">
+      <h2>Welcome Back 💕</h2>
+
+      <input type="text" id="username" placeholder="Your Sweet Username">
+      <input type="password" id="password" placeholder="Your Secret Password">
+
+      <button onclick="login()">Enter Vault 💖</button>
+      <button onclick="signUp()">Create My Vault 🌸</button>
+
+      <div class="footer-text">
+        Your memories deserve a safe little home.
+      </div>
+    </div>
+
+  </div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

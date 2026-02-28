@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Little Vault Scrapbook 💖</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,#ffe4ec,#ffd6e8,#fbcfe8);
+      padding:40px;
+      overflow-x:hidden;
+    }
+
+    h1{
+      text-align:center;
+      font-family:'Dancing Script',cursive;
+      font-size:40px;
+      color:#ff4f81;
+      margin-bottom:40px;
+    }
+
+    .scrapbook{
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:30px;
+    }
+
+    .entry-card{
+      width:260px;
+      background:white;
+      padding:15px;
+      border-radius:15px;
+      box-shadow:0 15px 30px rgba(255,105,180,0.25);
+      transform:rotate(-2deg);
+      animation:fadeIn 0.8s ease forwards;
+      opacity:0;
+      transition:0.3s;
+      position:relative;
+    }
+
+    .entry-card:nth-child(even){
+      transform:rotate(2deg);
+    }
+
+    .entry-card:hover{
+      transform:scale(1.05) rotate(0deg);
+    }
+
+    .entry-card img{
+      width:100%;
+      border-radius:12px;
+      margin-bottom:10px;
+    }
+
+    .entry-card p{
+      font-size:14px;
+      color:#444;
+      font-family:'Dancing Script',cursive;
+      font-size:18px;
+    }
+
+    @keyframes fadeIn{
+      from{transform:translateY(20px);opacity:0;}
+      to{transform:translateY(0);opacity:1;}
+    }
+
+    /* Floating sparkles */
+    .sparkle{
+      position:fixed;
+      font-size:18px;
+      animation:floatUp 6s linear infinite;
+      opacity:0.3;
+    }
+
+    @keyframes floatUp{
+      0%{transform:translateY(100vh);opacity:0;}
+      30%{opacity:0.4;}
+      100%{transform:translateY(-10vh);opacity:0;}
+    }
+
+    .back-btn{
+      display:block;
+      margin:50px auto 0;
+      padding:12px 25px;
+      border:none;
+      border-radius:25px;
+      background:linear-gradient(135deg,#ff9bb3,#ff4f81);
+      color:white;
+      font-weight:600;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .back-btn:hover{
+      transform:scale(1.1);
+    }
+
+  </style>
+</head>
+
+<body onload="loadSingleMemory()">
+
+<h1 id="title"></h1>
+
+<div class="scrapbook" id="content"></div>
+
+<button class="back-btn" onclick="window.location.href='dashboard.html'">
+  Back to Vault 💖
+</button>
+
+<!-- Sparkles -->
+<div class="sparkle" style="left:10%;animation-delay:0s;">✨</div>
+<div class="sparkle" style="left:30%;animation-delay:2s;">🌸</div>
+<div class="sparkle" style="left:50%;animation-delay:4s;">💖</div>
+<div class="sparkle" style="left:70%;animation-delay:1s;">✨</div>
+<div class="sparkle" style="left:85%;animation-delay:3s;">🌷</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>🌸 Your Memories 🌸</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg,#ffe4ec,#ffd6e8,#fbcfe8);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 550px;
+      background: white;
+      padding: 30px;
+      border-radius: 25px;
+      box-shadow: 0 20px 40px rgba(255,105,180,0.2);
+      text-align: center;
+    }
+
+    h1 {
+      color: #ff4f81;
+      margin-bottom: 10px;
+    }
+
+    .welcome {
+      font-size: 14px;
+      color: #777;
+      margin-bottom: 20px;
+    }
+
+    .addBtn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 20px;
+      border: none;
+      background: linear-gradient(135deg,#ff9bb3,#ff4f81);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    .addBtn:hover {
+      transform: scale(1.05);
+    }
+
+    .logoutBtn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+      background: #ffc1d6;
+      cursor: pointer;
+      margin-bottom: 25px;
+    }
+
+    .memory-card {
+      background: #fff0f5;
+      padding: 18px;
+      border-radius: 20px;
+      margin-bottom: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: left;
+      box-shadow: 0 5px 15px rgba(255,105,180,0.1);
+    }
+
+    .memory-card:hover {
+      transform: translateY(-4px);
+      background: #ffe4ec;
+    }
+
+    .memory-card h3 {
+      color: #ff4f81;
+      font-size: 16px;
+    }
+
+    .empty {
+      color: #999;
+      margin-top: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <h1>🌸 Your Memories 🌸</h1>
+  <div class="welcome" id="welcomeText"></div>
+
+  <button class="addBtn" onclick="window.location.href='add.html'">
+    + Add New Memory ✨
+  </button>
+
+  <button class="logoutBtn" onclick="logout()">
+    Logout
+  </button>
+
+  <div id="memories"></div>
+
+</div>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
+import { getFirestore, collection, getDocs, query, where }
+from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+
+/* 🔐 CHECK LOGIN */
+const currentUser = localStorage.getItem("currentUser");
+
+if(!currentUser){
+  window.location.href = "index.html";
+}
+
+/* 💗 SHOW WELCOME */
+document.getElementById("welcomeText").innerText =
+  "Welcome, " + currentUser + " 💖";
+
+/* 🔥 FIREBASE */
+const firebaseConfig = {
+  apiKey: "AIzaSyBeftm-belwgVO3v_pn6nSr5VlfnBsbd8w",
+  authDomain: "memorybox-ae323.firebaseapp.com",
+  projectId: "memorybox-ae323",
+  storageBucket: "memorybox-ae323.appspot.com",
+  messagingSenderId: "750123270929",
+  appId: "1:750123270929:web:0faa0f8b9468774df002b0"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+/* 📂 LOAD ONLY USER'S MEMORIES */
+async function loadMemories() {
+
+  const q = query(
+    collection(db,"memories"),
+    where("owner","==",currentUser)
+  );
+
+  const snapshot = await getDocs(q);
+  const container = document.getElementById("memories");
+  container.innerHTML = "";
+
+  if(snapshot.empty){
+    container.innerHTML = "<p class='empty'>No memories yet 💭</p>";
+    return;
+  }
+
+  snapshot.forEach(doc=>{
+  container.innerHTML += `
+    <div class="memory-card">
+      <h3 onclick="openMemory('${doc.id}')">${doc.data().title}</h3>
+      <button onclick="editMemory('${doc.id}')" style="margin-top:10px;">Edit ✏️</button>
+    </div>
+  `;
+});
+}
+
+/* 🔗 OPEN MEMORY */
+window.openMemory = function(id){
+  window.location.href = "memory.html?id="+id;
+};
+window.editMemory = function(id){
+  window.location.href = "add.html?id=" + id;
+};
+
+/* 🚪 LOGOUT */
+window.logout = function(){
+  localStorage.removeItem("currentUser");
+  window.location.href = "index.html";
+};
+
+loadMemories();
+
+</script>
+
+</body>
+</html>

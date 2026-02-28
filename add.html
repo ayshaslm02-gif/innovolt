@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Add Memory | Little Vault 💖</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body{
+      font-family:'Poppins',sans-serif;
+      background:linear-gradient(135deg,#ffe4ec,#ffd6e8,#fbcfe8);
+      padding:30px;
+    }
+
+    .container{
+      max-width:700px;
+      margin:auto;
+      background:white;
+      padding:30px;
+      border-radius:25px;
+      box-shadow:0 15px 40px rgba(255,105,180,0.2);
+    }
+
+    input, textarea{
+      width:100%;
+      padding:12px;
+      margin-bottom:15px;
+      border-radius:15px;
+      border:1px solid #ffd6e8;
+      background:#fff5f9;
+    }
+
+    textarea{height:80px;}
+
+    button{
+      padding:12px 20px;
+      border:none;
+      border-radius:20px;
+      background:linear-gradient(135deg,#ff9bb3,#ff4f81);
+      color:white;
+      cursor:pointer;
+      margin-top:10px;
+    }
+
+    .entry-block{
+      background:#fff0f6;
+      padding:15px;
+      border-radius:15px;
+      margin-bottom:15px;
+    }
+  </style>
+</head>
+
+<body onload="loadEditMemory()"></body>
+
+<div class="container">
+
+  <h2>✨ Create Memory ✨</h2>
+
+  <input type="text" id="title" placeholder="Memory Title">
+  <input type="date" id="unlockDate">
+  <input type="text" id="secretPassword" placeholder="Secret Password (optional)">
+
+  <div id="entriesContainer"></div>
+
+  <button type="button" onclick="addEntry()">+ Add Photo & Message</button>
+  <br>
+  <button onclick="saveMemory()">Save Memory 💖</button>
+
+</div>
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
